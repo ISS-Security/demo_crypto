@@ -22,25 +22,27 @@ rsa_public = rsa_private.public_key
 
 # Benchmark AES vs. RSA, encrypt vs. decrypt
 results = Benchmark.bm(15) do |bench|
-  bench.report('aes encrypt') do
+  bench.report('AES encrypt') do
     n.times do
       aes_cipher.update(plaintext) + aes_cipher.final
     end
   end
 
-  bench.report('aes decrypt') do
+  bench.report('AES decrypt') do
     n.times do
       aes_decipher.update(aes_ciphertext) + aes_decipher.final
     end
   end
 
-  bench.report('rsa encrypt') do
+  puts '-'*61
+
+  bench.report('RSA encrypt') do
     n.times do
       rsa_public.public_encrypt plaintext
     end
   end
 
-  bench.report('rsa decrypt') do
+  bench.report('RSA decrypt') do
     n.times do
       rsa_private.private_decrypt rsa_ciphertext
     end

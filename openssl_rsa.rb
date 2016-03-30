@@ -1,7 +1,5 @@
 require 'openssl'
 
-# see: ruby-doc.org/stdlib-2.0/libdoc/openssl/rdoc/OpenSSL.html
-
 # RSA ciphers
 rsa_private = OpenSSL::PKey::RSA.generate 2048
 rsa_private.to_pem
@@ -13,6 +11,8 @@ rsa_public.to_pem
 plaintext = 'Hello darkness my old friend'
 
 rsa_ciphertext = rsa_public.public_encrypt plaintext
+puts Base64.strict_encode64(rsa_ciphertext)
+
 puts rsa_private.private_decrypt(rsa_ciphertext)
 
 # Limits of plaintext size
