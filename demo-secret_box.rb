@@ -44,3 +44,17 @@ ciphertext
 decrypted_message = desecret_box.decrypt(nonce, ciphertext)
 # RbNaCl::CryptoError: Decryption failed. Ciphertext failed verification.
 # from /Users/soumyaray/.rvm/gems/ruby-2.2.0/gems/rbnacl-3.1.2/lib/rbnacl/secret_boxes/xsalsa20poly1305.rb:94:in `open'
+
+
+# Depth
+key = RbNaCl::Random.random_bytes(RbNaCl::SecretBox.key_bytes)
+secret_box = RbNaCl::SecretBox.new(key)
+nonce = RbNaCl::Random.random_bytes(secret_box.nonce_bytes)
+
+m1 = 'This is my secret sauce'
+m2 = 'This is another message'
+
+c1 = secret_box.encrypt(nonce, m1)
+c2 = secret_box.encrypt(nonce, m2)
+
+c1.bytes.map.with_index { |b1, i| (b1 ^ c2.bytes[i]).chr }.join
