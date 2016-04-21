@@ -34,10 +34,6 @@ decrypted_message = secret_box.decrypt(nonce, ciphertext)
 
 ## Tampering with the ciphertext raises an exception
 ciphertext[5] = '?'
-# => "?"
-
-ciphertext
-# => "n\xA8NX%?tkzf8\b\xC9\xC7}\xCD\x9A\x93n\x92\xF3cGmD\xB8bN..."
 
 decrypted_message = desecret_box.decrypt(nonce, ciphertext)
 # RbNaCl::CryptoError: Decryption failed. Ciphertext failed verification.
