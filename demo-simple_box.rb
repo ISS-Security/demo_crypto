@@ -1,6 +1,6 @@
 require 'rbnacl/libsodium'
 
-## Using SimpleBox
+## Encrypt with SimpleBox
 key = RbNaCl::Random.random_bytes(RbNaCl::SecretBox.key_bytes)
 simple_box = RbNaCl::SimpleBox.from_secret_key(key)
 message = 'This is my secret sauce'
@@ -20,6 +20,10 @@ simple_ciphertext.bytes
 #     217, 115, 191, 67, 11, 210, 250, 175, 132, 251, 115, 31, 217, 141, 30,
 #     231]
 
+## Decrypt with SimpleBox
+simple_box = RbNaCl::SimpleBox.from_secret_key(key)
+decrypted_text = simple_box.decrypt(simple_ciphertext)
+# => "This is my secret sauce"
 
 ## Compare SimpleBox to SecretBox
 secret_box = RbNaCl::SecretBox.new(key)
