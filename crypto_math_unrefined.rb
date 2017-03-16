@@ -45,15 +45,14 @@ class String
   end
 end
 
-def entropy(str)
-  e = 0
-  sz = str.bytesize.to_f
-  b = str.bytes
-  0.upto(255) do |i|
-    x = b.count(i)/sz
-    if x > 0
-      e += - x * (Math.log(x)/Math.log(2))
-    end
+def entropy(string)
+  length = string.length
+  counts = string.chars.uniq
+                 .map { |c| [c, string.count(c).to_f] }
+                 .to_h
+
+  counts.values.reduce(0) do |entropy, count|
+    prob = count / length
+    entropy - prob * Math.log2(prob)
   end
-  e
 end
