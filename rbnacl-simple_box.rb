@@ -37,4 +37,4 @@ secret_ciphertext.bytes
 simple_ciphertext.length
 # => 63
 [RbNaCl::SecretBox.nonce_bytes, secret_ciphertext.length]
-=> [24, 39]
+# => [24, 39]
