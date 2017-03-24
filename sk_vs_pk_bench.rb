@@ -3,7 +3,7 @@ require 'benchmark'
 
 # Setup basic parameters
 plaintext = 'Hello darkness my old friend'
-n = 10_000
+n = 100_000
 
 # Setup AES ciphers
 aes_cipher = OpenSSL::Cipher::AES.new(128, :CBC).encrypt
@@ -23,31 +23,23 @@ rsa_public = rsa_private.public_key
 # Benchmark AES vs. RSA, encrypt vs. decrypt
 results = Benchmark.bm(15) do |bench|
   bench.report('AES encrypt') do
-    n.times do
-      aes_cipher.update(plaintext) + aes_cipher.final
-    end
+    n.times { aes_cipher.update(plaintext) + aes_cipher.final }
   end
 
   bench.report('AES decrypt') do
-    n.times do
-      aes_decipher.update(aes_ciphertext) + aes_decipher.final
-    end
+    n.times { aes_decipher.update(aes_ciphertext) + aes_decipher.final }
   end
 
-  puts '-'*61
+  puts '-' * 61
 
   bench.report('RSA encrypt') do
-    n.times do
-      rsa_public.public_encrypt plaintext
-    end
+    n.times { rsa_public.public_encrypt plaintext }
   end
 
   bench.report('RSA decrypt') do
-    n.times do
-      rsa_private.private_decrypt rsa_ciphertext
-    end
+    n.times { rsa_private.private_decrypt rsa_ciphertext }
   end
 end
 
-results[2].utime / results[0].utime
-results[3].utime / results[1].utime
+puts "SK encryption faster by: #{results[2].utime / results[0].utime}"
+puts "SK encryption faster by: #{results[3].utime / results[1].utime}"
