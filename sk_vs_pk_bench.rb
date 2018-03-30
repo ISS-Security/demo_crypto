@@ -39,7 +39,7 @@ results = Benchmark.bm(15) do |bench|
   bench.report('RSA decrypt') do
     n.times { rsa_private.private_decrypt rsa_ciphertext }
   end
-end
+end;
 
 puts "SK encryption faster by: #{results[2].utime / results[0].utime}"
 puts "SK encryption faster by: #{results[3].utime / results[1].utime}"
