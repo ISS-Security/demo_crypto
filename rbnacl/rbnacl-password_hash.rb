@@ -43,7 +43,7 @@ hard_hash(password2)
 require 'benchmark'
 
 Benchmark.bm do |bench|
-  n = 100
+  n = 1000
   bench.report('sha256') do
     n.times { salted_hash(password1) }
   end

@@ -26,7 +26,7 @@ message = parsed['data']
 
 verifier = RbNaCl::VerifyKey.new(Base64.strict_decode64(VERIFY_KEY))
 verifier.verify(signature_raw, message)
-# => true
 
-verifier.verify('*' * 64, message)
-# RbNaCl::BadSignatureError: signature was forged/corrupt
+
+verifier.verify(signature_raw, message + 'x')
+
