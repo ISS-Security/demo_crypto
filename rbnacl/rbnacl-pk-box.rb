@@ -1,4 +1,4 @@
-require 'rbnacl/libsodium'
+require 'rbnacl'
 
 # PERSON A SETUP
 ## Generate own keys

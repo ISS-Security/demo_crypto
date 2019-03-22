@@ -1,4 +1,4 @@
-require 'rbnacl/libsodium'
+require 'rbnacl'
 
 message = 'This is my secret sauce'
 h = RbNaCl::Hash.sha256(message)

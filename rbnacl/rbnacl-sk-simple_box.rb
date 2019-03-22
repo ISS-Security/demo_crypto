@@ -1,4 +1,4 @@
-require 'rbnacl/libsodium'
+require 'rbnacl'
 
 ## Encrypt with SimpleBox
 key = RbNaCl::Random.random_bytes(RbNaCl::SecretBox.key_bytes)

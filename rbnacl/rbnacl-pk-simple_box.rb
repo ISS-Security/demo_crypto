@@ -1,4 +1,4 @@
-require 'rbnacl/libsodium'
+require 'rbnacl'
 
 # KEY CREATION
 personA_private_key = RbNaCl::PrivateKey.generate

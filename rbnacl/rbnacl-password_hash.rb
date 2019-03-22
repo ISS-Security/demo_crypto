@@ -1,5 +1,5 @@
 # Password security
-require 'rbnacl/libsodium'
+require 'rbnacl'
 require 'base64'
 
 password1 = 'cantguessthis'
