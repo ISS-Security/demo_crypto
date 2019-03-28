@@ -1,3 +1,5 @@
+# rubocop:disable all
+
 require 'rbnacl'
 
 # PERSON A SETUP

@@ -41,5 +41,5 @@ results = Benchmark.bm(15) do |bench|
   end
 end;
 
-puts "SK encryption faster by: #{results[2].utime / results[0].utime}"
-puts "SK encryption faster by: #{results[3].utime / results[1].utime}"
+puts "SK encryption faster by: #{(results[2].utime / results[0].utime).round} times"
+puts "SK decryption faster by: #{(results[3].utime / results[1].utime).round} times"
