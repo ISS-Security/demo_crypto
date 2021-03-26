@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rbnacl'
 
 message = 'This is my secret sauce'
