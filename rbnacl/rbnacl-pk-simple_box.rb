@@ -3,30 +3,30 @@
 require 'rbnacl'
 
 # KEY CREATION
-# personA creates keypair
-personA_private_key = RbNaCl::PrivateKey.generate
-personA_public_key  = personA_private_key.public_key
+# Alice creates keypair
+A_private_key = RbNaCl::PrivateKey.generate
+A_public_key  = A_private_key.public_key
 
-# personb creates keypair
-personB_private_key = RbNaCl::PrivateKey.generate
-personB_public_key  = personB_private_key.public_key
+# Bob creates keypair
+B_private_key = RbNaCl::PrivateKey.generate
+B_public_key  = B_private_key.public_key
 
 # KEY EXCHANGE
-# personA creates SimpleBox
-personA_box = RbNaCl::SimpleBox.from_keypair(
-  personB_public_key,
-  personA_private_key
+# Alice creates SimpleBox
+A_box = RbNaCl::SimpleBox.from_keypair(
+  B_public_key,
+  A_private_key
 )
 
-# personB creates SimpleBox
-personB_box = RbNaCl::SimpleBox.from_keypair(
-  personA_public_key,
-  personB_private_key
+# Bob creates SimpleBox
+B_box = RbNaCl::SimpleBox.from_keypair(
+  A_public_key,
+  B_private_key
 )
 
-# personA SENDING
+# Alice SENDING
 message = "secret"
-ciphertext = personA_box.encrypt(message)
+ciphertext = A_box.encrypt(message)
 
-# personB RECEIVING
-plaintext = personB_box.decrypt(ciphertext)
+# Bob RECEIVING
+plaintext = B_box.decrypt(ciphertext)
