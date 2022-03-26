@@ -4,28 +4,26 @@ require 'rbnacl'
 
 # PERSON A SETUP
 ## Generate own keys
-personA_private_key = RbNaCl::PrivateKey.generate
-personA_public_key  = personA_private_key.public_key
+A_private_key = RbNaCl::PrivateKey.generate
+A_public_key  = A_private_key.public_key
 
 # PERSON B SETUP
 ## Generate own keys
-personB_private_key = RbNaCl::PrivateKey.generate
-personB_public_key  = personB_private_key.public_key
+B_private_key = RbNaCl::PrivateKey.generate
+B_public_key  = B_private_key.public_key
 
-# BOX SETUP
-personA_box = RbNaCl::Box.new(personB_public_key,
-                              personA_private_key)
-personB_box = RbNaCl::Box.new(personA_public_key,
-                              personB_private_key)
-
-# ENCRYPT Message
+# PERSON A - ENCRYPT Message
 message = "secret"
+personA_box = RbNaCl::Box.new(B_public_key,
+                              A_private_key)
 nonce = RbNaCl::Random.random_bytes(personA_box.nonce_bytes)
 ciphertext = personA_box.encrypt(nonce, message)
 # send nonce and ciphertext to personB
 
-# DECRYPT Message
+# PERSONA A - DECRYPT Message
 # receive nonce and ciphertext from personA
+personB_box = RbNaCl::Box.new(A_public_key,
+                              B_private_key)
 plaintext = personB_box.decrypt(nonce, ciphertext)
 
 # BOX:
