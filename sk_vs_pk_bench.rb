@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'openssl'
 require 'benchmark'
 
@@ -6,12 +8,12 @@ plaintext = 'Hello darkness my old friend'
 n = 100_000
 
 # Setup AES ciphers
-aes_cipher = OpenSSL::Cipher::AES.new(128, :CBC).encrypt
+aes_cipher = OpenSSL::Cipher.new('aes-128-cbc').encrypt
 key = aes_cipher.random_key
 iv = aes_cipher.random_iv
 aes_ciphertext = aes_cipher.update(plaintext) + aes_cipher.final
 
-aes_decipher = OpenSSL::Cipher::AES.new(128, :CBC).decrypt
+aes_decipher = OpenSSL::Cipher.new('aes-128-cbc').decrypt
 aes_decipher.key = key
 aes_decipher.iv = iv
 
