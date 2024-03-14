@@ -49,4 +49,5 @@ Benchmark.bm do |bench|
   bench.report('scrypt') do
     n.times { hard_hash(password1) }
   end
-end;
+end
+
