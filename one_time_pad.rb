@@ -20,6 +20,8 @@ p1 = 'tin'.bytes
 p2 = 'pot'.bytes
 p3 = 'eye'.bytes
 
+key   = 'hog'.bytes
+
 # Alice reuses keys!
 c1 = one_time_pad(p1, key)
 c2 = one_time_pad(p2, key)
