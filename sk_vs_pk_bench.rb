@@ -5,7 +5,7 @@ require 'benchmark'
 
 # Setup basic parameters
 plaintext = 'Hello darkness my old friend'
-n = 100_000
+n = 10_000
 
 # Setup AES ciphers
 aes_cipher = OpenSSL::Cipher.new('aes-128-cbc').encrypt
